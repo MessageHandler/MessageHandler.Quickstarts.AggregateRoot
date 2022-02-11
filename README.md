@@ -26,10 +26,10 @@ This decission will be recorded as an event on an event stream and any internal 
 ## Usage of the Aggregate Root pattern
 
 Basic usage of the aggregate root pattern involves the following steps:
-- Building up it's history as a list of events
-- Restoring the aggregate from that history
-- Invoke commands on the aggregate root
-- Commit the pending events
+- Build up the history as a list of events
+- Restore the aggregate from that history
+- Invoke commands on the aggregate root, which will result in pending events
+- Commit the pending events, which will make them part of the history
 
 ```C#
 var processId = Guid.NewGuid().ToString();
