@@ -7,7 +7,7 @@ MessageHandler is distributed under a commercial license, for more information o
 ## What you need to get started
 
 - The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) should be installed
-- The sample was created using [Visual Studio 2022 communicty edition](https://visualstudio.microsoft.com/vs/)
+- The sample was created using [Visual Studio 2022 community edition](https://visualstudio.microsoft.com/vs/)
 - A general purpose [azure storage account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) is used to store events.
 - To use the outbox an [azure service bus namespace](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-create-namespace-portal) or [eventhub](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create) is required.
 - The **MessageHandler.EventSourcing.AzureTableStorage** package is available from [nuget.org](https://www.nuget.org/packages/MessageHandler.EventSourcing.AzureTableStorage/)
