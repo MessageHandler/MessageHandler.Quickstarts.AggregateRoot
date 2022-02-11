@@ -59,7 +59,7 @@ var runtime = EventsourcingRuntime.Create(eventsourcingConfiguration);
 var repository = runtime.CreateAggregateRepository();
 ```
 
-With a reference to the repository, aggregate instances can be resolved, used, and flushed back to the event source.
+With a reference to the repository, aggregate instances can be restored, used, and flushed back to the event source.
 
 ```C#
 var processId = Guid.NewGuid().ToString();
