@@ -1,0 +1,1 @@
+# MessageHandler.Samples.EventSourcing.AggregateRoot
