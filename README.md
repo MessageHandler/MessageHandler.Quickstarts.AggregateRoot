@@ -46,11 +46,11 @@ var pendingEvents = process.Commit();
 
 ## Loading and persisting the aggregate from and to Azure Table Storage
 
-To load and persist an aggregate from a table in Azure Table Storage:
-- The AzureTableStorageEventSource needs to be configured with the proper connectionstring and tablename.
-- And registered as an event source on an instance of `EventsourcingConfiguration`
-- When the configuration is finalized it can be used to instantiate the runtime
-- Which in turn can be used to resolve a repository (not needed when an IoC container would have been integrated in the configuration)
+To load and persist an aggregate from a table in Azure Table Storage the following steps need to be performed:
+- And AzureTableStorageEventSource instance needs to be configured with the proper connectionstring and tablename.
+- And registered as an event source on an instance of `EventsourcingConfiguration`.
+- When the configuration is finalized it can be used to instantiate a runtime instance.
+- Which in turn can be used to resolve, among others, a repository (resolution is not needed when an IoC container would have been integrated in the configuration)
 
 ```C#
 var eventsourcingConfiguration = new EventsourcingConfiguration();
