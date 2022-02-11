@@ -1,4 +1,4 @@
-# Building an Aggregate Root using MessageHandler.EventSourcing
+# Designing an Aggregate Root
 
 This project is part of the [MessageHandler processing patterns](https://www.messagehandler.net/patterns/) library.
 
