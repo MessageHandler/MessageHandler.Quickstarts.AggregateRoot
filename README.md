@@ -33,16 +33,85 @@ Basic usage of the aggregate root pattern involves the following steps:
 - Commit the pending events, which will make them part of the history
 
 ```C#
-var processId = Guid.NewGuid().ToString();
+var bookingId = Guid.NewGuid().ToString();
 var history = new List<SourcedEvent>();
 
-var process = new RegistrationProcess(processId);
-process.RestoreFrom(history);
+var booking = new OrderBooking(bookingId);
+booking.RestoreFrom(history);
 
-process.Start();
-process.Finish();
+booking.Book(purchaseOrder);
+booking.Confirm();
 
-var pendingEvents = process.Commit();
+var pendingEvents = booking.Commit();
+```
+
+This usage type serves as the basis for unit testing the aggregate root pattern and test driven development.
+
+As MessageHandler is intented to be unit test friendly, you can find example unit tests built this way in the [samples solution](/src/)
+
+## Implementing the Aggregate Root
+
+Implementing an Aggregate Root requires two steps.
+
+Add a command method that first validates if integrity would be violated, then emit the relevant decission as an event.
+
+Secondly store the internal state of the aggregate based on events emitted, by implementing respective `IApply` interfaces.
+
+These Apply methods will be called both upon restoration of the aggregate and after emitting a new event.
+
+```C#
+public class OrderBooking : EventSourced,
+                            IApply<PurchaseOrderBooked>
+{
+    public OrderBooking(string id) : base(id)
+    {
+    }
+
+    // command
+    public BookingValidationResult Book(PurchaseOrder purchaseOrder, string userId = null){
+
+        // maintain integrity
+        if (this._bookingReference != null) {
+            return new BookingValidationResult() { Success = false };
+        }
+
+        // record decision
+        Emit(new PurchaseOrderBooked()
+        {
+            TenantId = sellerReference,
+            Context = new Context
+            {
+                Id = Id,
+                What = nameof(PurchaseOrderBooked),
+                When = DateTime.UtcNow,
+                Who = userId
+            },
+            BookingId = Id,
+            BookingReference = purchaseOrder.BookingReference,
+            PurchaseOrderId = purchaseOrder.PurchaseOrderId,
+            SellerReference = purchaseOrder.SellerReference,
+            BuyerReference = purchaseOrder.BuyerReference,
+            OrderLines = purchaseOrder.OrderLines
+
+        });
+
+        return new BookingValidationResult() { Success = true };
+    }
+
+    // store internal state
+    public void Apply(PurchaseOrderBooked msg)
+    {
+        // only store state actually needed for maintaining integrity
+        this._bookingReference = msg.BookingReference;
+    }
+            
+    private string _bookingReference { get; set; }
+    
+    public class BookingValidationResult
+    {
+        public bool Success { get; set; }
+    }
+}
 ```
 
 ## Loading and persisting the aggregate from and to Azure Table Storage
@@ -63,11 +132,11 @@ var repository = runtime.CreateAggregateRepository();
 With a reference to the repository, aggregate instances can be restored, used, and flushed back to the event source.
 
 ```C#
-var processId = Guid.NewGuid().ToString();
-var process = await repository.Get<RegistrationProcess>(processId);
+var bookingId = Guid.NewGuid().ToString();
+var booking = await repository.Get<OrderBooking>(bookingId);
 
-process.Start();
-process.Finish();
+booking.Book(purchaseOrder);
+booking.Confirm();
 
 await repository.Flush();
 ```
