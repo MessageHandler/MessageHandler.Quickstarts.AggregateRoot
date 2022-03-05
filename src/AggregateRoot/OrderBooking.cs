@@ -10,20 +10,17 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot
         {
         }
 
-        public BookingValidationResult Book(string bookingReference, 
-                                            string purchaseOrderId, 
-                                            string sellerReference, 
-                                            string buyerReference, 
-                                            IList<OrderLine> orderLines, 
-                                            string userId){
+        public BookingValidationResult Book(string bookingReference, PurchaseOrder purchaseOrder, string userId = null){
 
+            // maintain integrity
             if (this._bookingReference != null) {
                 return new BookingValidationResult() { Success = false };
             }
 
+            // record decision
             Emit(new PurchaseOrderBooked()
             {
-                TenantId = sellerReference,
+                TenantId = purchaseOrder.SellerReference,
                 Context = new Context
                 {
                     Id = Id,
@@ -33,10 +30,10 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot
                 },
                 BookingId = Id,
                 BookingReference = bookingReference,
-                PurchaseOrderId = purchaseOrderId,
-                SellerReference = sellerReference,
-                BuyerReference = buyerReference,
-                OrderLines = orderLines
+                PurchaseOrderId = purchaseOrder.PurchaseOrderId,
+                SellerReference = purchaseOrder.SellerReference,
+                BuyerReference = purchaseOrder.BuyerReference,
+                OrderLines = purchaseOrder.OrderLines
 
             });
 
@@ -45,6 +42,7 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot
 
         public void Apply(PurchaseOrderBooked msg)
         {
+            // only store state actually needed for maintaining integrity
             this._bookingReference = msg.BookingReference;
         }
              

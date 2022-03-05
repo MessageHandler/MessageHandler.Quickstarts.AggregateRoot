@@ -15,7 +15,7 @@ MessageHandler is distributed under a commercial license, for more information o
 
 ## What is an Aggregate Root
 
-An aggregate is a cluster of domain objects that can be treated as a single unit. Any references from outside the aggregate should only go to the aggregate root. 
+An aggregate is a cluster of domain objects that is treated as a single unit. Any references from outside the aggregate should only go to the aggregate root. 
 The root can thus ensure the integrity of the aggregate as a whole.
 
 As an aggregate root is responsible for maintaining integrity of the whole, it is the primary responsible for deciding if a command can be executed on the aggregate or not.
@@ -68,7 +68,7 @@ public class OrderBooking : EventSourced,
     }
 
     // command
-    public BookingValidationResult Book(PurchaseOrder purchaseOrder, string userId = null){
+    public BookingValidationResult Book(string bookingReference,PurchaseOrder purchaseOrder, string userId = null){
 
         // maintain integrity
         if (this._bookingReference != null) {
@@ -78,7 +78,7 @@ public class OrderBooking : EventSourced,
         // record decision
         Emit(new PurchaseOrderBooked()
         {
-            TenantId = sellerReference,
+            TenantId = purchaseOrder.SellerReference,
             Context = new Context
             {
                 Id = Id,
@@ -87,7 +87,7 @@ public class OrderBooking : EventSourced,
                 Who = userId
             },
             BookingId = Id,
-            BookingReference = purchaseOrder.BookingReference,
+            BookingReference = bookingReference,
             PurchaseOrderId = purchaseOrder.PurchaseOrderId,
             SellerReference = purchaseOrder.SellerReference,
             BuyerReference = purchaseOrder.BuyerReference,
@@ -135,7 +135,7 @@ With a reference to the repository, aggregate instances can be restored, used, a
 var bookingId = Guid.NewGuid().ToString();
 var booking = await repository.Get<OrderBooking>(bookingId);
 
-booking.Book(purchaseOrder);
+booking.Book(Guid.NewGuid().ToString(), purchaseOrder);
 booking.Confirm();
 
 await repository.Flush();
