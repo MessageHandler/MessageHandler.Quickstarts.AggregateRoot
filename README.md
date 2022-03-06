@@ -113,7 +113,7 @@ public class OrderBooking : EventSourced,
 ## Loading and persisting the aggregate from and to Azure Table Storage
 
 To load and persist an aggregate from a table in Azure Table Storage the following steps need to be performed:
-- And AzureTableStorageEventSource instance needs to be configured with the proper connectionstring and tablename.
+- An AzureTableStorageEventSource instance needs to be configured with the proper connectionstring and tablename.
 - And registered as an event source on an instance of `EventsourcingConfiguration`.
 - When the configuration is finalized it can be used to instantiate a runtime instance.
 - Which in turn can be used to resolve, among others, a repository (resolution is not needed when an IoC container would have been integrated in the configuration)
@@ -141,8 +141,8 @@ await repository.Flush();
 
 MessageHandler is intented to be test friendly.
 
-This sample contains plenty of ideas on how you test your aggregate roots without requiring a dependency on an actual storage account or servicebus namespace.
+This sample contains plenty of ideas on how to test an aggregate root without requiring a dependency on an actual storage account or servicebus namespace, and thus keep the tests fast.
 
-- [Unit tests](/src/Tests/UnitTests): To test the actual logic in the aggregate root.
-- [Component tests](/src/Tests/ComponentTests): To test the api you use to expose the aggregate root.
-- [Contract tests](/src/Tests/ContractTests): Used to verify that the test doubles in use are behaving the same as an actual dependency would.
+- [Unit tests](/src/Tests/UnitTests): To test the actual logic in the aggregate root. Unit tests should make up the bulk of all tests in the system.
+- [Component tests](/src/Tests/ComponentTests): To test the api used to expose the aggregate root.
+- [Contract tests](/src/Tests/ContractTests): To verify that the test doubles used in the unit and component tests are behaving the same as an actual dependency would. Note: contract verification files are often shared between producers and consumers of the contract.
