@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AggregateRoot", "AggregateRoot\AggregateRoot.csproj", "{468B61FC-BE96-4CA0-92A4-5B5141186A10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{EA945969-4E97-4EBE-943B-2AAC032A7BE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "Tests\UnitTests\UnitTests.csproj", "{EA945969-4E97-4EBE-943B-2AAC032A7BE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contract", "Contract\Contract.csproj", "{FD553B35-1751-4497-9C6C-95A22A44CEBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractTests", "ContractTests\ContractTests.csproj", "{DCC0D56E-7C90-4B4F-A719-34ABC4863649}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractTests", "Tests\ContractTests\ContractTests.csproj", "{DCC0D56E-7C90-4B4F-A719-34ABC4863649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentTests", "ComponentTests\ComponentTests.csproj", "{57C9EDFD-7585-4AA7-8006-FA81C3AE77A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentTests", "Tests\ComponentTests\ComponentTests.csproj", "{57C9EDFD-7585-4AA7-8006-FA81C3AE77A1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54BB79C2-1C31-4AA3-84F5-E0CEED57AB0F}"
 EndProject

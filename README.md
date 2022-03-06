@@ -143,6 +143,6 @@ MessageHandler is intented to be test friendly.
 
 This sample contains plenty of ideas on how you test your aggregate roots without requiring a dependency on an actual storage account or servicebus namespace.
 
-[Unit testss](/src/UnitTests): To test the actual logic in the aggregate root.
-[Component tests](/src/ComponentTests): To test the api you use to expose the aggregate root.
-[Contract tests](/src/ContractTests): Used to verify that the test doubles in use are behaving the same as an actual dependency would.
+[Unit testss](/src/Tests/UnitTests): To test the actual logic in the aggregate root.
+[Component tests](/src/Tests/ComponentTests): To test the api you use to expose the aggregate root.
+[Contract tests](/src/Tests/ContractTests): Used to verify that the test doubles in use are behaving the same as an actual dependency would.
