@@ -45,10 +45,6 @@ booking.Confirm();
 var pendingEvents = booking.Commit();
 ```
 
-This usage type serves as the basis for unit testing the aggregate root pattern and test driven development.
-
-As MessageHandler is intented to be unit test friendly, you can find example unit tests built this way in the [samples solution](/src/)
-
 ## Implementing the Aggregate Root
 
 Implementing an Aggregate Root requires two steps.
@@ -140,3 +136,13 @@ booking.Confirm();
 
 await repository.Flush();
 ```
+
+## Designed with testing in mind
+
+MessageHandler is intented to be test friendly.
+
+This sample contains plenty of ideas on how you test your aggregate roots without requiring a dependency on an actual storage account or servicebus namespace.
+
+[Unit testss](/src/UnitTests): To test the actual logic in the aggregate root.
+[Component tests](/src/ComponentTests): To test the api you use to expose the aggregate root.
+[Contract tests](/src/ContractTests): Used to verify that the test doubles in use are behaving the same as an actual dependency would.
