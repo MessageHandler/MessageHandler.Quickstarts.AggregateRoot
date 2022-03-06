@@ -27,19 +27,10 @@ namespace ComponentTests
                 .Returns(Task.FromResult(booking));
 
             // when
-
-            var purchaseOrder = new PurchaseOrderBuilder()
-                                .WellknownOrder("1aa6ab11-a111-4687-a6e0-cbcf403bc6a8")                
-                                .Build();
-
-            //todo: builder
-            var command = new BookPurchaseOrder()
-            {
-                BookingId = bookingId,
-                BookingReference = "0e397128-7544-4269-8eed-eaea1dc523b5",
-                PurchaseOrder = purchaseOrder,
-            };
-
+            var command = new BookPurchaseOrderCommandBuilder()
+                          .WellknownBooking(bookingId)
+                          .Build();
+           
             var controller = new CommandController(mock.Object);
 
             var actionResult = controller.Book(command.BookingId, command);

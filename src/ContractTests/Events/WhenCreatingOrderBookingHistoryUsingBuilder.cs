@@ -16,10 +16,10 @@ namespace Contract
 
             string csOutput = JsonSerializer.Serialize(history);
 
-            await File.WriteAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/actual.cs.json", csOutput);
+            await File.WriteAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/actual.history.cs.json", csOutput);
 
             // output provided by similar tests on the client side, using javascript
-            var jsOutput = await File.ReadAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/verified.js.json");
+            var jsOutput = await File.ReadAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/verified.history.js.json");
 
             Assert.Equal(jsOutput, csOutput);
         }

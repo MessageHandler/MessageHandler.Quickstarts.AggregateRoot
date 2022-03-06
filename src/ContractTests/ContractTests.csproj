@@ -8,10 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include=".verification\1aa6ab11-a111-4687-a6e0-cbcf403bc6a8\verified.js.json">
+    <Content Include=".verification\1aa6ab11-a111-4687-a6e0-cbcf403bc6a8\verified.state.js.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include=".verification\91d6950e-2ddf-4e98-a97c-fe5f434c13f0\verified.js.json">
+    <Content Include=".verification\91d6950e-2ddf-4e98-a97c-fe5f434c13f0\verified.command.js.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include=".verification\91d6950e-2ddf-4e98-a97c-fe5f434c13f0\verified.history.js.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
