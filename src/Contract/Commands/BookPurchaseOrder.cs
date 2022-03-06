@@ -1,4 +1,4 @@
-﻿namespace Contract
+﻿namespace MessageHandler.Samples.EventSourcing.AggregateRoot.Contract
 {
     public class BookPurchaseOrder
     {

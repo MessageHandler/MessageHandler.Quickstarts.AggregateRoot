@@ -1,14 +1,13 @@
 using Moq;
 using Xunit;
 using MessageHandler.EventSourcing.DomainModel;
-using MessageHandler.Samples.EventSourcing.AggregateRoot;
 using System.Threading.Tasks;
-using Contract;
-using API;
 using Microsoft.AspNetCore.Mvc;
 using FluentAssertions;
+using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+using MessageHandler.Samples.EventSourcing.AggregateRoot.API;
 
-namespace ComponentTests
+namespace MessageHandler.Samples.EventSourcing.AggregateRoot.ComponentTests
 {
     public class WhileBookingPurchaseOrderThroughAPI
     {

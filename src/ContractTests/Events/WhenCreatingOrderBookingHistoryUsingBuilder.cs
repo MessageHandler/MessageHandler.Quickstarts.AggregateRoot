@@ -1,10 +1,11 @@
-﻿using System.IO;
+﻿using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Contract
+namespace MessageHandler.Samples.EventSourcing.AggregateRoot.ContractTests
 {
     public class WhenCreatingOrderBookingHistoryUsingBuilder
     {

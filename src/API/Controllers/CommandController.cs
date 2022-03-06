@@ -1,9 +1,8 @@
-using Contract;
 using MessageHandler.EventSourcing.DomainModel;
-using MessageHandler.Samples.EventSourcing.AggregateRoot;
+using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API
+namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
 {
     [ApiController]
     [Route("[controller]")]
@@ -21,7 +20,7 @@ namespace API
         //[Authorize]
         public async Task<IActionResult> Book([FromRoute] string id, [FromBody] BookPurchaseOrder cmd)
         {
-            var aggregate = await _repository.Get<OrderBooking>(cmd.BookingId);
+            var aggregate = await _repository.Get<OrderBooking>(id);
 
             var result = aggregate.Book(cmd.BookingReference, cmd.PurchaseOrder);
 

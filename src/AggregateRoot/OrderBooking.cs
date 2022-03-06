@@ -1,5 +1,5 @@
-﻿using Contract;
-using MessageHandler.EventSourcing.DomainModel;
+﻿using MessageHandler.EventSourcing.DomainModel;
+using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
 
 namespace MessageHandler.Samples.EventSourcing.AggregateRoot
 {

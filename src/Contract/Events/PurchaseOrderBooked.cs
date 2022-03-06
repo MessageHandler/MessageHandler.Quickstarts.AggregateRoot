@@ -1,6 +1,6 @@
 ﻿using MessageHandler.EventSourcing.Contracts;
 
-namespace Contract
+namespace MessageHandler.Samples.EventSourcing.AggregateRoot.Contract
 {
     public class PurchaseOrderBooked : SourcedEvent
     {

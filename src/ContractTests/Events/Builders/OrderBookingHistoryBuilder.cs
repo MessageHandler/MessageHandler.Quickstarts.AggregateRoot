@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Contract
+namespace MessageHandler.Samples.EventSourcing.AggregateRoot.Contract
 {
     public class OrderBookingHistoryBuilder
     {
@@ -23,7 +23,7 @@ namespace Contract
             return this;
         }
 
-        private Dictionary<string, Func<IEnumerable<SourcedEvent>>> _wellknownBookings = new()
+        private readonly Dictionary<string, Func<IEnumerable<SourcedEvent>>> _wellknownBookings = new()
         {
             {
                 "91d6950e-2ddf-4e98-a97c-fe5f434c13f0",

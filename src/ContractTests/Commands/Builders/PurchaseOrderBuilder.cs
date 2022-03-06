@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Contract
+namespace MessageHandler.Samples.EventSourcing.AggregateRoot.Contract
 {
     public class PurchaseOrderBuilder
     {
@@ -54,7 +54,7 @@ namespace Contract
 
 
 
-        private Dictionary<string, Func<PurchaseOrder>> _wellknownPurchaseOrders = new()
+        private readonly Dictionary<string, Func<PurchaseOrder>> _wellknownPurchaseOrders = new()
         {
             {
                 "1aa6ab11-a111-4687-a6e0-cbcf403bc6a8",

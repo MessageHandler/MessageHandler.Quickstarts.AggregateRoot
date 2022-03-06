@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using MessageHandler.EventSourcing.Contracts;
-using Contract;
 using Xunit;
 using FluentAssertions;
+using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
 
 namespace MessageHandler.Samples.EventSourcing.AggregateRoot.UnitTests
 {
