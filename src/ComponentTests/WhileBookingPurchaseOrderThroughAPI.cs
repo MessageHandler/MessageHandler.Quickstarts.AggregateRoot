@@ -2,17 +2,18 @@ using Moq;
 using Xunit;
 using MessageHandler.EventSourcing.DomainModel;
 using MessageHandler.Samples.EventSourcing.AggregateRoot;
-using System;
 using System.Threading.Tasks;
 using Contract;
 using API;
+using Microsoft.AspNetCore.Mvc;
+using FluentAssertions;
 
 namespace ComponentTests
 {
-    public class WhileBookingPurchaseOrder
+    public class WhileBookingPurchaseOrderThroughAPI
     {
         [Fact]
-        public void GivenNewBookingProcess_WhenBookingPurchaseOrder_ThenPurchaseOrderBookedIsFlushed()
+        public async Task GivenNewBookingProcess_WhenBookingPurchaseOrder_ThenPurchaseOrderBookedIsFlushed()
         {
             // given
             var bookingId = "91d6950e-2ddf-4e98-a97c-fe5f434c13f0";
@@ -24,7 +25,7 @@ namespace ComponentTests
 
             var mock = new Mock<IEventSourcedRepository>();
             mock.Setup(repository => repository.Get<OrderBooking>(bookingId))
-                .Returns(Task.FromResult(booking));
+                .ReturnsAsync(booking);
 
             // when
             var command = new BookPurchaseOrderCommandBuilder()
@@ -33,10 +34,12 @@ namespace ComponentTests
            
             var controller = new CommandController(mock.Object);
 
-            var actionResult = controller.Book(command.BookingId, command);
+            var actionResult = await controller.Book(command.BookingId, command);
 
             // then
             mock.Verify(repository => repository.Flush(), Times.Once() );
+
+            actionResult.Should().BeOfType<OkResult>();
         }
     }
 }
