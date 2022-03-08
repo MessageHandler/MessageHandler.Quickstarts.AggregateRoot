@@ -24,6 +24,12 @@ This decission will be recorded as an event on an event stream and any internal 
 
 ![Aggregate Root](./img/aggregate-root.jpg)
 
+## When to use it
+
+Use this pattern every time a user, or an automated part of the system, wants to make a change.
+
+Encapsulate the intent into a command and send it to the aggregate root, so that it can take a decission on how to respond to the intent.
+
 ## Usage of the Aggregate Root pattern
 
 Basic usage of the aggregate root pattern involves the following steps:
