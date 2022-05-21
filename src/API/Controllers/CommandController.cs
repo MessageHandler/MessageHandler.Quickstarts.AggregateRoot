@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api")]
     public class CommandController : ControllerBase
     {
         private readonly IEventSourcedRepository _repository;
@@ -16,7 +16,7 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
         }
 
         [HttpPost()]
-        [Route("{id}")]
+        [Route("{id}/book")]
         //[Authorize]
         public async Task<IActionResult> Book([FromRoute] string id, [FromBody] BookPurchaseOrder cmd)
         {

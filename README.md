@@ -13,6 +13,21 @@ MessageHandler is distributed under a commercial license, for more information o
 - The **MessageHandler.EventSourcing.AzureTableStorage** package is available from [nuget.org](https://www.nuget.org/packages/MessageHandler.EventSourcing.AzureTableStorage/)
 - The optional **MessageHandler.EventSourcing.Outbox** package is also available from [nuget.org](https://www.nuget.org/packages/MessageHandler.EventSourcing.Outbox/)
 
+## Running the sample
+
+Prior to being able to run the sample, you need to [configure the user secrets file](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows#manage-user-secrets-with-visual-studio).
+
+In the secrets file you must specify the following configuration values.
+
+```JSON
+{
+  "azurestoragedata": "your azure storage connection string goes here",
+  "servicebusnamespace": "your azure service bus connection string goes here"
+}
+```
+
+Also ensure a topic named `orderbooking.events` is created up front in the service bus namespace.
+
 ## What is an Aggregate Root
 
 An aggregate is a cluster of domain objects that is treated as a single unit. Any references from outside the aggregate should only go to the aggregate root. 
@@ -152,3 +167,28 @@ This sample contains plenty of ideas on how to test an aggregate root without re
 - [Unit tests](/src/Tests/UnitTests): To test the actual logic in the aggregate root. Unit tests should make up the bulk of all tests in the system.
 - [Component tests](/src/Tests/ComponentTests): To test the api used to expose the aggregate root.
 - [Contract tests](/src/Tests/ContractTests): To verify that the test doubles used in the unit and component tests are behaving the same as an actual dependency would. Note: contract verification files are often shared between producers and consumers of the contract.
+
+## Enabling the outbox
+
+The outbox is a message pump, which dispatches events from the event source towards a destination such as Azure Service Bus or Azure EventHubs.
+
+It relies on the message handler transactional processing engine and runs in the background using the message handler runtime. 
+
+```C#
+var runtimeConfiguration = new HandlerRuntimeConfiguration(services);
+runtimeConfiguration.HandlerName(HandlerName);
+
+var eventsourcingConfiguration = new EventsourcingConfiguration(runtimeConfiguration);
+eventsourcingConfiguration.UseEventSource(new AzureTableStorageEventSource(connectionString, tableName));
+
+eventsourcingConfiguration.EnableOutbox(EventSourceStreamTypeName, HandlerName, pipeline =>
+{
+    pipeline.RouteMessages(to => to.Topic(TopicName, serviceBusConnectionString));
+});
+
+eventsourcingConfiguration.RegisterEventsourcingRuntime();
+
+runtimeConfiguration.UseHandlerRuntime();
+```
+
+Note: When hosting the outbox in an API or website, ensure it is configured to be 'always on'.

@@ -4,10 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e15c818d-61a0-4a03-b774-a996a5366def</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	<PackageReference Include="MessageHandler.EventSourcing.Outbox" Version="4.0.0-beta4" />
   </ItemGroup>
 
   <ItemGroup>
