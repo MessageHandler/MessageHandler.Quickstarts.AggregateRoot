@@ -71,7 +71,9 @@ var pendingEvents = booking.Commit();
 Implementing an Aggregate Root requires two steps.
 
 - Add a command method that first validates if integrity would be violated, then emit the relevant decission as an event.
-- Secondly store the internal state of the aggregate based on events emitted, by implementing respective `IApply` interfaces. These Apply methods will be called both upon restoration of the aggregate and after emitting a new event.
+- Secondly store the internal state of the aggregate based on events emitted, by implementing respective `IApply` interfaces. 
+
+These Apply methods will be called both upon restoration of the aggregate and after emitting a new event.
 
 ```C#
 public class OrderBooking : EventSourced,
