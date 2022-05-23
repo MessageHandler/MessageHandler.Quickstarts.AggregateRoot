@@ -8,7 +8,7 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
 {
     public static class MessageHandlerConfiguration
     {
-        public const string EventSourceTableName = "orderbooking";
+        public const string EventSourceTableName = "OrderBooking";
         public const string EventSourceStreamTypeName = "OrderBooking";
         public const string HandlerName = "orderbooking";
         public const string TopicName = "orderbooking.events";
