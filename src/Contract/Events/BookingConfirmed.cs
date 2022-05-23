@@ -7,5 +7,7 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.Contract
         public Context Context { get; set; }
 
         public string BookingId { get; set; }
+
+        public string SalesOrderReference { get; set; }
     }
 }

@@ -27,8 +27,6 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.UnitTests
 
             pendingEvents.Should().NotBeEmpty();
             pendingEvents.Should().AllBeOfType<PurchaseOrderBooked>();
-        }
-
-             
+        }             
     }
 }

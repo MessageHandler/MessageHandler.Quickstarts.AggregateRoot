@@ -6,21 +6,21 @@ using Xunit;
 
 namespace MessageHandler.Samples.EventSourcing.AggregateRoot.ContractTests
 {
-    public class WhenCreatingBookPurchaseOrderCommandsUsingBuilder
+    public class WhenCreatingConfirmBookingCommandsUsingBuilder
     {
         [Fact]
         public async Task ShouldAdhereToContract()
         {
-            var command = new BookPurchaseOrderCommandBuilder()
+            var command = new ConfirmBookingCommandBuilder()
                                         .WellknownBooking("91d6950e-2ddf-4e98-a97c-fe5f434c13f0")
                                         .Build();
 
             string csOutput = JsonSerializer.Serialize(command);
 
-            await File.WriteAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/actual.bookpurchaseorder.command.cs.json", csOutput);
+            await File.WriteAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/actual.confirmbooking.command.cs.json", csOutput);
 
             // output provided by similar tests on the client side, using javascript
-            var jsOutput = await File.ReadAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/verified.bookpurchaseorder.command.js.json");
+            var jsOutput = await File.ReadAllTextAsync(@"./.verification/91d6950e-2ddf-4e98-a97c-fe5f434c13f0/verified.confirmbooking.command.js.json");
 
             Assert.Equal(jsOutput, csOutput);
         }

@@ -32,5 +32,23 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
             return Ok();
 
         }
+
+        [HttpPost()]
+        [Route("{id}/confirm")]
+        //[Authorize]
+        public async Task<IActionResult> Confirm([FromRoute] string id, [FromBody] ConfirmBooking cmd)
+        {
+            var aggregate = await _repository.Get<OrderBooking>(id);
+
+            var result = aggregate.Confirm();
+
+            if (result.Success)
+            {
+                await _repository.Flush();
+            }
+
+            return Ok();
+
+        }
     }
 }
