@@ -1,4 +1,9 @@
-using MessageHandler.Samples.EventSourcing.AggregateRoot.API;
+using MessageHandler.EventSourcing;
+using MessageHandler.EventSourcing.AzureTableStorage;
+using MessageHandler.EventSourcing.Outbox;
+using MessageHandler.Runtime;
+using MessageHandler.Runtime.AtomicProcessing;
+using MessageHandler.Quickstart.AggregateRoot;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,16 +14,39 @@ var configuration = new ConfigurationBuilder()
 
 // Add services to the container.
 
-var runtimeConfiguration = builder.Services.AddHandlerRuntime(configuration);
-builder.Services.AddEventSource(runtimeConfiguration, configuration);
+var eventSourceTableName = nameof(OrderBooking);
+var eventSourceStreamTypeName = nameof(OrderBooking);
+var handlerName = "orderbooking";
+var topicName = "orderbooking.events";
+
+var storageConnectionString = builder.Configuration.GetValue<string>("azurestoragedata")
+                                  ?? throw new Exception("No 'TableStorageConnectionString' was provided. Use User Secrets or specify via environment variable.");
+
+var serviceBusConnectionString = builder.Configuration.GetValue<string>("servicebusnamespace")
+                               ?? throw new Exception("No 'ServiceBusConnectionString' was provided. Use User Secrets or specify via environment variable.");
+
+builder.Services.AddMessageHandler(handlerName, runtimeConfiguration =>
+{   
+    runtimeConfiguration.EventSourcing(source =>
+    {
+        source.Stream(eventSourceStreamTypeName,
+            from => from.AzureTableStorage(storageConnectionString, eventSourceTableName),
+            into =>
+            {
+                into.Aggregate<OrderBooking>()
+                    .EnableOutbox(eventSourceStreamTypeName, handlerName, pipeline =>
+                    {
+                        pipeline.RouteMessages(to => to.Topic(topicName, serviceBusConnectionString));
+                    });                
+            });
+    });
+});
 
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddHandlerRuntimeStartup(runtimeConfiguration);
 
 var app = builder.Build();
 

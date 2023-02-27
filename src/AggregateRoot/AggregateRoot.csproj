@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessageHandler.EventSourcing.AzureTableStorage" Version="4.0.0-beta4" />
+    <PackageReference Include="MessageHandler.EventSourcing.AzureTableStorage" Version="4.0.0-beta20" />
   </ItemGroup>
 
   <ItemGroup>

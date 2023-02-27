@@ -1,16 +1,16 @@
 using MessageHandler.EventSourcing.DomainModel;
-using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+using MessageHandler.Quickstart.AggregateRoot.Contract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
+namespace MessageHandler.Quickstart.AggregateRoot.API
 {
     [ApiController]
     [Route("api")]
     public class CommandController : ControllerBase
     {
-        private readonly IEventSourcedRepository _repository;
+        private readonly IEventSourcedRepository<OrderBooking> _repository;
 
-        public CommandController(IEventSourcedRepository repository)
+        public CommandController(IEventSourcedRepository<OrderBooking> repository)
         {
             _repository = repository;
         }
@@ -20,7 +20,7 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
         //[Authorize]
         public async Task<IActionResult> Book([FromRoute] string id, [FromBody] BookPurchaseOrder cmd)
         {
-            var aggregate = await _repository.Get<OrderBooking>(id);
+            var aggregate = await _repository.Get(id);
 
             var result = aggregate.Book(cmd.BookingReference, cmd.PurchaseOrder);
 
@@ -38,7 +38,7 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.API
         //[Authorize]
         public async Task<IActionResult> Confirm([FromRoute] string id, [FromBody] ConfirmBooking cmd)
         {
-            var aggregate = await _repository.Get<OrderBooking>(id);
+            var aggregate = await _repository.Get(id);
 
             var result = aggregate.Confirm();
 

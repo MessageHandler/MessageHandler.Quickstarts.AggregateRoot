@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using MessageHandler.EventSourcing.Contracts;
 using Xunit;
 using FluentAssertions;
-using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+using MessageHandler.Quickstart.AggregateRoot.Contract;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot.UnitTests
+namespace MessageHandler.Quickstart.AggregateRoot.UnitTests
 {
     public class WhileBookingPurchaseOrder
     {

@@ -1,6 +1,6 @@
 ﻿using MessageHandler.EventSourcing.Contracts;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot.Contract
+namespace MessageHandler.Quickstart.AggregateRoot.Contract
 {
     public class BookingConfirmed : SourcedEvent
     {

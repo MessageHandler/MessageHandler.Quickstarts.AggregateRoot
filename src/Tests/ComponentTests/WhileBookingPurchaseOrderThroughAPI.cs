@@ -4,10 +4,10 @@ using MessageHandler.EventSourcing.DomainModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FluentAssertions;
-using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
-using MessageHandler.Samples.EventSourcing.AggregateRoot.API;
+using MessageHandler.Quickstart.AggregateRoot.Contract;
+using MessageHandler.Quickstart.AggregateRoot.API;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot.ComponentTests
+namespace MessageHandler.Quickstart.AggregateRoot.ComponentTests
 {
     public class WhileBookingPurchaseOrderThroughAPI
     {
@@ -22,8 +22,8 @@ namespace MessageHandler.Samples.EventSourcing.AggregateRoot.ComponentTests
             var booking = new OrderBooking(bookingId);
             booking.RestoreFrom(history);
 
-            var mock = new Mock<IEventSourcedRepository>();
-            mock.Setup(repository => repository.Get<OrderBooking>(bookingId))
+            var mock = new Mock<IEventSourcedRepository<OrderBooking>>();
+            mock.Setup(repository => repository.Get(bookingId))
                 .ReturnsAsync(booking);
 
             // when

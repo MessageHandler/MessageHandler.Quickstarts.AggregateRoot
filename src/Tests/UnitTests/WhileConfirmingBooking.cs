@@ -1,9 +1,9 @@
 ﻿using Xunit;
 using FluentAssertions;
-using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+using MessageHandler.Quickstart.AggregateRoot.Contract;
 using System.Linq;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot.UnitTests
+namespace MessageHandler.Quickstart.AggregateRoot.UnitTests
 {
     public class WhileConfirmingBooking
     {

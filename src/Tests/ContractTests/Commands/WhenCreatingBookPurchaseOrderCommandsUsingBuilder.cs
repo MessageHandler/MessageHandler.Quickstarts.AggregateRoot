@@ -1,10 +1,10 @@
-﻿using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+﻿using MessageHandler.Quickstart.AggregateRoot.Contract;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot.ContractTests
+namespace MessageHandler.Quickstart.AggregateRoot.ContractTests
 {
     public class WhenCreatingBookPurchaseOrderCommandsUsingBuilder
     {

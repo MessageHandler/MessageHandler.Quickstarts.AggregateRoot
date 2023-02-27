@@ -1,7 +1,7 @@
 ﻿using MessageHandler.EventSourcing.DomainModel;
-using MessageHandler.Samples.EventSourcing.AggregateRoot.Contract;
+using MessageHandler.Quickstart.AggregateRoot.Contract;
 
-namespace MessageHandler.Samples.EventSourcing.AggregateRoot
+namespace MessageHandler.Quickstart.AggregateRoot
 {
     public class OrderBooking : EventSourced,
         IApply<PurchaseOrderBooked>,
