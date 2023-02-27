@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace MessageHandler.Quickstart.AggregateRoot.Contract
+namespace MessageHandler.Quickstart.Contract
 {
     public class OrderBookingHistoryBuilder
     {

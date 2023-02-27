@@ -1,5 +1,5 @@
 ﻿using MessageHandler.EventSourcing.DomainModel;
-using MessageHandler.Quickstart.AggregateRoot.Contract;
+using MessageHandler.Quickstart.Contract;
 
 namespace MessageHandler.Quickstart.AggregateRoot
 {

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using FluentAssertions;
-using MessageHandler.Quickstart.AggregateRoot.Contract;
+using MessageHandler.Quickstart.Contract;
 using System.Linq;
 
 namespace MessageHandler.Quickstart.AggregateRoot.UnitTests

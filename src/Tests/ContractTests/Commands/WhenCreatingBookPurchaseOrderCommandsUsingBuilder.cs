@@ -1,4 +1,4 @@
-﻿using MessageHandler.Quickstart.AggregateRoot.Contract;
+﻿using MessageHandler.Quickstart.Contract;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;

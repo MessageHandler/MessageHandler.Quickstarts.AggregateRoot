@@ -4,7 +4,7 @@ using MessageHandler.EventSourcing.DomainModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FluentAssertions;
-using MessageHandler.Quickstart.AggregateRoot.Contract;
+using MessageHandler.Quickstart.Contract;
 using MessageHandler.Quickstart.AggregateRoot.API;
 
 namespace MessageHandler.Quickstart.AggregateRoot.ComponentTests

@@ -1,5 +1,5 @@
 using MessageHandler.EventSourcing.DomainModel;
-using MessageHandler.Quickstart.AggregateRoot.Contract;
+using MessageHandler.Quickstart.Contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MessageHandler.Quickstart.AggregateRoot.API

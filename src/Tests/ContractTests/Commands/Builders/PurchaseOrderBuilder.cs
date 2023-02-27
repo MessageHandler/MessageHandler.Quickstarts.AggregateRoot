@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MessageHandler.Quickstart.AggregateRoot.Contract
+namespace MessageHandler.Quickstart.Contract
 {
     public class PurchaseOrderBuilder
     {

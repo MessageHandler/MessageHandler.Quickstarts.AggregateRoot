@@ -1,4 +1,4 @@
-﻿namespace MessageHandler.Quickstart.AggregateRoot.Contract
+﻿namespace MessageHandler.Quickstart.Contract
 {
     public class Context
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MessageHandler.EventSourcing.Contracts;
 using Xunit;
 using FluentAssertions;
-using MessageHandler.Quickstart.AggregateRoot.Contract;
+using MessageHandler.Quickstart.Contract;
 
 namespace MessageHandler.Quickstart.AggregateRoot.UnitTests
 {

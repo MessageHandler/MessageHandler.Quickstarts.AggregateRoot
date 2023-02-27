@@ -1,6 +1,6 @@
 ﻿using MessageHandler.EventSourcing.Contracts;
 
-namespace MessageHandler.Quickstart.AggregateRoot.Contract
+namespace MessageHandler.Quickstart.Contract
 {
     public class BookingCancelled : SourcedEvent
     {
