@@ -20,10 +20,10 @@ var handlerName = "orderbooking";
 var topicName = "orderbooking.events";
 
 var storageConnectionString = builder.Configuration.GetValue<string>("azurestoragedata")
-                                  ?? throw new Exception("No 'TableStorageConnectionString' was provided. Use User Secrets or specify via environment variable.");
+                                  ?? throw new Exception("No 'azurestoragedata' was provided. Use User Secrets or specify via environment variable.");
 
 var serviceBusConnectionString = builder.Configuration.GetValue<string>("servicebusnamespace")
-                               ?? throw new Exception("No 'ServiceBusConnectionString' was provided. Use User Secrets or specify via environment variable.");
+                               ?? throw new Exception("No 'servicebusnamespace' was provided. Use User Secrets or specify via environment variable.");
 
 builder.Services.AddMessageHandler(handlerName, runtimeConfiguration =>
 {   

@@ -21,6 +21,10 @@ Use this pattern every time a user, or an automated part of the system, wants to
 
 Encapsulate the intent into a command and send it to the aggregate root, so that it can take a decission on how to respond to the intent.
 
+## Scenario
+
+The scenario for this quickstart is e-commerce process, where you can place a booking through an API, and the aggregate root will decide if it is a valid purchase order or not.
+
 ## What you need to get started
 
 - The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) should be installed
