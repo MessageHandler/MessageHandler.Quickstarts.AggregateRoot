@@ -9,7 +9,7 @@
 
 	<ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-	<PackageReference Include="MessageHandler.EventSourcing.Outbox" Version="4.0.0-rc1" />
+	<PackageReference Include="MessageHandler.EventSourcing.Outbox" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
